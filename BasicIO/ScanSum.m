@@ -1,22 +1,18 @@
-fileName = 'xanadu.txt';
-in = java.io.FileInputStream(fileName);
-out = java.io.FileOutputStream('outagain.txt');
+fileName = 'numbers.txt';
+s = java.util.Scanner(java.io.BufferedReader(java.io.FileReader(fileName)));
+s.useLocale(java.util.Locale.US);
 
-while true
-    c = in.read;
-    if c ~= -1
-        out.write(c);
+sum = 0;
+while (s.hasNext)
+    if (s.hasNextDouble)
+        sum = sum + s.nextDouble;
     else
-        break;
+        s.next;
     end
 end
+disp(sum);
+s.close;
 
-in.close;
-out.close;
-
-% ORIGINAL CODE:
-% https://docs.oracle.com/javase/tutorial/essential/io/bytestreams.html
-%
 % /*
 %  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
 %  *
@@ -47,31 +43,33 @@ out.close;
 %  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 %  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 %  */ 
-% import java.io.FileInputStream;
-% import java.io.FileOutputStream;
+% import java.io.FileReader;
+% import java.io.BufferedReader;
 % import java.io.IOException;
+% import java.util.Scanner;
+% import java.util.Locale;
 % 
-% public class CopyBytes {
+% public class ScanSum {
 %     public static void main(String[] args) throws IOException {
 % 
-%         FileInputStream in = null;
-%         FileOutputStream out = null;
+%         Scanner s = null;
+%         double sum = 0;
 % 
 %         try {
-%             in = new FileInputStream("xanadu.txt");
-%             out = new FileOutputStream("outagain.txt");
-%             int c;
+%             s = new Scanner(new BufferedReader(new FileReader("usnumbers.txt")));
+%             s.useLocale(Locale.US);
 % 
-%             while ((c = in.read()) != -1) {
-%                 out.write(c);
+%             while (s.hasNext()) {
+%                 if (s.hasNextDouble()) {
+%                     sum += s.nextDouble();
+%                 } else {
+%                     s.next();
+%                 }   
 %             }
 %         } finally {
-%             if (in != null) {
-%                 in.close();
-%             }
-%             if (out != null) {
-%                 out.close();
-%             }
+%             s.close();
 %         }
+% 
+%         System.out.println(sum);
 %     }
 % }

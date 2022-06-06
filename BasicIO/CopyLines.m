@@ -1,22 +1,21 @@
 fileName = 'xanadu.txt';
-in = java.io.FileInputStream(fileName);
-out = java.io.FileOutputStream('outagain.txt');
+inputStream = java.io.BufferedReader(java.io.FileReader(fileName));
+outputStream = java.io.PrintWriter(java.io.FileWriter("characteroutput.txt"));
 
 while true
-    c = in.read;
-    if c ~= -1
-        out.write(c);
-    else
+    l = inputStream.readLine;
+    if isempty(l)
         break;
+    else
+        outputStream.println(l);
     end
 end
 
-in.close;
-out.close;
+inputStream.close;
+outputStream.close;
 
-% ORIGINAL CODE:
-% https://docs.oracle.com/javase/tutorial/essential/io/bytestreams.html
-%
+% https://docs.oracle.com/javase/tutorial/essential/io/charstreams.html
+% 
 % /*
 %  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
 %  *
@@ -47,30 +46,32 @@ out.close;
 %  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 %  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 %  */ 
-% import java.io.FileInputStream;
-% import java.io.FileOutputStream;
+% import java.io.FileReader;
+% import java.io.FileWriter;
+% import java.io.BufferedReader;
+% import java.io.PrintWriter;
 % import java.io.IOException;
 % 
-% public class CopyBytes {
+% public class CopyLines {
 %     public static void main(String[] args) throws IOException {
 % 
-%         FileInputStream in = null;
-%         FileOutputStream out = null;
+%         BufferedReader inputStream = null;
+%         PrintWriter outputStream = null;
 % 
 %         try {
-%             in = new FileInputStream("xanadu.txt");
-%             out = new FileOutputStream("outagain.txt");
-%             int c;
+%             inputStream = new BufferedReader(new FileReader("xanadu.txt"));
+%             outputStream = new PrintWriter(new FileWriter("characteroutput.txt"));
 % 
-%             while ((c = in.read()) != -1) {
-%                 out.write(c);
+%             String l;
+%             while ((l = inputStream.readLine()) != null) {
+%                 outputStream.println(l);
 %             }
 %         } finally {
-%             if (in != null) {
-%                 in.close();
+%             if (inputStream != null) {
+%                 inputStream.close();
 %             }
-%             if (out != null) {
-%                 out.close();
+%             if (outputStream != null) {
+%                 outputStream.close();
 %             }
 %         }
 %     }
