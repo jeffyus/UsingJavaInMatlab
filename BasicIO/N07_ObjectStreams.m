@@ -6,9 +6,7 @@ import java.lang.String;
 
 dataFile = 'invoicedata';
 prices = [BigDecimal('19.99') BigDecimal('9.99') BigDecimal('15.99') BigDecimal('3.99') BigDecimal('4.99')];
-unites = uint8([12 8 13 29 50]);
-% unites = [Integer(12) Integer(8) Integer(13) Integer(29) Integer(50)];
-% descs = [String('Java T-shirt') String('Java Mug') String('Duke Juggling Dolls') String('Java Pin') String('Java Key Chain')];
+unites = [12 8 13 29 50];
 descs = {'Java T-shirt', 'Java Mug', 'Duke Juggling Dolls', 'Java Pin', 'Java Key Chain'};
 out = ObjectOutputStream(BufferedOutputStream(FileOutputStream(dataFile)));
 
