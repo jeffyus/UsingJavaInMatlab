@@ -1,0 +1,3 @@
+%% Creating a Path
+% Jv
+jpath1 = java.nio.file.Paths.get(str, javaArray('java.lang.String', 0));
