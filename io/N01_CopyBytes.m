@@ -1,21 +1,31 @@
-fileName = 'xanadu.txt';
-inputStream = java.io.FileReader(fileName);
-outputStream = java.io.FileWriter("characteroutput.txt");
+inputFileName = 'xanadu.txt';
+outputFileName = 'outagain.txt';
+copyBytes(inputFileName, outputFileName);
+
+function copyBytes(inputFileName, outputFileName)
+% This function copies file A to B, using FileInputStream and FileOutputStream
+
+inputFileName = which(inputFileName);
+in = java.io.FileInputStream(inputFileName);        % Byte stream class
+out = java.io.FileOutputStream(outputFileName);
 
 while true
-    c = inputStream.read;
+    c = in.read;
     if c ~= -1
-        outputStream.write(c);
+        out.write(c);
     else
         break;
     end
 end
 
-inputStream.close;
-outputStream.close;
+in.close;
+out.close;
 
-% https://docs.oracle.com/javase/tutorial/essential/io/charstreams.html
-% 
+end
+
+% ORIGINAL CODE:
+% https://docs.oracle.com/javase/tutorial/essential/io/bytestreams.html
+%
 % /*
 %  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
 %  *
@@ -46,30 +56,30 @@ outputStream.close;
 %  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 %  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 %  */ 
-% import java.io.FileReader;
-% import java.io.FileWriter;
+% import java.io.FileInputStream;
+% import java.io.FileOutputStream;
 % import java.io.IOException;
 % 
-% public class CopyCharacters {
+% public class CopyBytes {
 %     public static void main(String[] args) throws IOException {
 % 
-%         FileReader inputStream = null;
-%         FileWriter outputStream = null;
+%         FileInputStream in = null;
+%         FileOutputStream out = null;
 % 
 %         try {
-%             inputStream = new FileReader("xanadu.txt");
-%             outputStream = new FileWriter("characteroutput.txt");
-% 
+%             in = new FileInputStream("xanadu.txt");
+%             out = new FileOutputStream("outagain.txt");
 %             int c;
-%             while ((c = inputStream.read()) != -1) {
-%                 outputStream.write(c);
+% 
+%             while ((c = in.read()) != -1) {
+%                 out.write(c);
 %             }
 %         } finally {
-%             if (inputStream != null) {
-%                 inputStream.close();
+%             if (in != null) {
+%                 in.close();
 %             }
-%             if (outputStream != null) {
-%                 outputStream.close();
+%             if (out != null) {
+%                 out.close();
 %             }
 %         }
 %     }
