@@ -1,4 +1,4 @@
-function replaceZipEntry(zipFileName, entryName)
+function N02_ReplaceZipEntry(zipFileName, entryName)
 % Quickly replace existing entry Using java.nio.file.FileSystems
 
 entryFilePath = java.nio.file.Paths.get(entryName, javaArray('java.lang.String', 0));
